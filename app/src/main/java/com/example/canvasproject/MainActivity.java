@@ -2,6 +2,7 @@ package com.example.canvasproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         //inicializo un objeto de mi propia clase View que contiene el lienzo donde dibujar
         CanvasView canvasView = new CanvasView(this);
         //añadimos nuestro View al administrador de diseño principal
+        canvasView.setVisibility(View.VISIBLE);
         lyMain.addView(canvasView);
     }
 }

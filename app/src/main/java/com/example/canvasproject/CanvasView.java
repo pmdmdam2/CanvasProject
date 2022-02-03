@@ -2,6 +2,7 @@ package com.example.canvasproject;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.Display;
@@ -22,11 +23,11 @@ public class CanvasView extends View {
     private Paint pincel;
     public CanvasView(Activity activity) {
         super(activity.getBaseContext());
-        Display display = activity.getWindowManager().getDefaultDisplay();
+        /*Display display = activity.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         width = size.x;
-        height = size.y;
+        height = size.y;*/
         rnd = new Random();
     }
     @Override
@@ -34,16 +35,17 @@ public class CanvasView extends View {
         super.onDraw(canvas);
         //Creo el pincel
         pincel = new Paint();
+
         //bucle for para pintar 1000 puntos aleatorios
         //para ello se generá 1 color aleatorio, 1 tipo de trazo
         //unas coordenadas para cada punto
         for(int i=0;i<1000;i++) {
             colores = getResources().getIntArray(R.array.colors);
             color = rnd.nextInt(colores.length);
-            x = rnd.nextInt(width - 100);
-            y = rnd.nextInt(height - 100);
-            strokeWidth = rnd.nextInt(50) + 20;
-            pincel.setColor(color);
+            x = rnd.nextInt(canvas.getWidth()-100)+50;
+            y = rnd.nextInt(canvas.getHeight() - 100)+50;
+            strokeWidth = rnd.nextInt(1) + 5;
+            pincel.setColor(colores[color]);
             pincel.setStrokeWidth(strokeWidth);
             canvas.drawPoint(x, y, pincel);
         }
